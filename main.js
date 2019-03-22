@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken');
 const config = require('./config');
 const tokenList = {};
 var session = require("cookie-session");
-const mysql = require('mysql');
+//const mysql = require('mysql');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 var bodyParser = require("body-parser");
@@ -36,7 +36,7 @@ const port = 8081;
 
 app.use(session({secret : 'todotopsecret', cookie: { maxAge: 60000 }}));
 
-const db = mysql.createConnection ({
+/*const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -51,7 +51,7 @@ db.connect((err) => {
     console.log('Connected to database');
 });
 
-global.db = db;
+global.db = db; */
 
 app.set('port', process.env.port || port); // set express to use this port
 app.set('views', [path.join(__dirname + '/views'), path.join(__dirname + '/views/admin')]); // set express to look in this folder to render our view
