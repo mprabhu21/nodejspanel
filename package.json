@@ -1,7 +1,7 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "My Todo List",
+  "description": "My Sample Nodejs App",
   "main": "main.js",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Prabhu M <mprabhu@q2m.in>",
