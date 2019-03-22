@@ -197,7 +197,7 @@ app.get('/getStatus',function(req,res){
             connection.release();
             return res.json({"error" : true,"message" : "Error in database."});
         } else {*/
-            var sqlQuery = "SELECT * FROM ??";
+            /*var sqlQuery = "SELECT * FROM ??";
             var inserts = ["UserPost"];
             sqlQuery = mysql.format(sqlQuery,inserts);
             db.query(sqlQuery,function(err,rows){
@@ -207,7 +207,7 @@ app.get('/getStatus',function(req,res){
                 } else {
                     res.json({"error" : false,"message" : rows});
                 }
-            });
+            });*/
         /*}
         connection.on('error', function(err) {
             return res.json({"error" : true,"message" : "Error in database."});
