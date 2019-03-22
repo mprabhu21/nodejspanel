@@ -1,0 +1,30 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "My Todo List",
+  "main": "main.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "cron": "^1.7.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.3",
+    "grunt": "^1.0.3",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-nodemon": "^0.4.2",
+    "jsonwebtoken": "^8.5.0",
+    "mysql": "^2.16.0",
+    "node-input-validator": "^3.1.0",
+    "nodemailer": "^5.1.1",
+    "npm": "^6.9.0",
+    "req-flash": "0.0.3",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prabhu M <mprabhu@q2m.in>",
+  "license": "ISC"
+}
