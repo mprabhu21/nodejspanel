@@ -32,7 +32,9 @@ var cronJob = require('cron').CronJob;
     }
 });*/
 /*Const Port Number*/
-const port = 3000;
+//const port = 3000;
+const port = process.env.PORT || 3000;
+
 
 app.use(session({secret : 'todotopsecret', cookie: { maxAge: 60000 }}));
 
