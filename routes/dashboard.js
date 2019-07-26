@@ -4,9 +4,12 @@ module.exports = {
         sess = req.session;
         console.log('Login 123: ', sess);
         if (typeof(req.session.adminlogin) !== 'undefined' && req.session.adminlogin.length > 0) {
-            console.log('Login Details 1111: ', req.session.adminlogin);
+            console.log('Login Details 1111: ', req.session.adminlogin[0].email);
             res.render('admin/dashboard.ejs', {
-                title: 'Welcome to Appy Admin Panel'
+                title: 'Welcome to Appy Admin Panel',
+                email: req.session.adminlogin[0].email,
+                first_name: req.session.adminlogin[0].first_name,
+                last_name : req.session.adminlogin[0].last_name
             });    
         } else {
             res.redirect('/');

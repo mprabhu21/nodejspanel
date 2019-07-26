@@ -15,13 +15,16 @@ const jwt = require('jsonwebtoken');
 const config = require('./config');
 const tokenList = {};
 var session = require("cookie-session");
-//const mysql = require('mysql');
+const mysql = require('mysql');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({ extended : false });
 var validator = require('node-input-validator');
 var cronJob = require('cron').CronJob;
+
+var formvalidator = require('validator');
+
 
 /*var smtpTransport = nodemailer.createTransport({
     service: "gmail",
@@ -38,7 +41,7 @@ const port = process.env.PORT || 3000;
 
 app.use(session({secret : 'todotopsecret', cookie: { maxAge: 60000 }}));
 
-/*const db = mysql.createConnection ({
+const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -53,7 +56,7 @@ db.connect((err) => {
     console.log('Connected to database');
 });
 
-global.db = db; */
+global.db = db; 
 
 app.set('port', process.env.port || port); // set express to use this port
 app.set('views', [path.join(__dirname + '/views'), path.join(__dirname + '/views/admin')]); // set express to look in this folder to render our view
@@ -146,7 +149,9 @@ io.on('connection',function(socket){
 const {getHomePage} = require('./routes/index');
 const {getAppyPage} = require('./routes/appy');
 const {getAboutPage} = require('./routes/about');
-const {getAdminPage, getLoginPage, getSecurePage, getTokenPage} = require('./routes/admin');
+const {getPortfolioPage} = require('./routes/portfolio');
+const {getContactPage} = require('./routes/contact');
+const {getAdminPage, getLoginPage, getSecurePage, getTokenPage, getSignOutPage} = require('./routes/admin');
 const {getDashboard} = require('./routes/dashboard');
 
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
@@ -159,9 +164,12 @@ app.post('/token', getTokenPage);
 
 //app.use(require('./tokenChecker'));
 app.get('/secure', getSecurePage);
-app.get('/about_page', getAboutPage); 
+app.get('/about', getAboutPage); 
+app.get('/portfolio', getPortfolioPage); 
+app.get('/contact', getContactPage); 
 
 app.get('/admin/dashboard', getDashboard);
+app.get('/admin/signout', getSignOutPage);
 
 app.get('/curd', getHomePage);
 app.get('/add', addPlayerPage);
@@ -219,7 +227,9 @@ app.get('/getStatus',function(req,res){
 
 
 app.get('/valid', function(req, res){
-	res.render('valid.ejs');
+	res.render('valid.ejs',{
+        errors : ''
+    });
 });
 
 
@@ -230,7 +240,11 @@ app.post('/valid/add', function(req, res){
 	});
 	validr.check().then(function(matched){
 		if(!matched){
-			res.status(422).send(validr.errors);
+            res.render('valid.ejs',{
+                errors : validr.errors
+            });
+            console.log('Errors', validr.errors);
+			//res.status(422).send(validr.errors);
 		}
 	});
 });
