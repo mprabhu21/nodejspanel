@@ -10,6 +10,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-fileupload": "^1.1.1-alpha.3",
+    "express-validator": "^5.3.1",
     "grunt": "^1.0.3",
     "grunt-contrib-jshint": "^2.0.0",
     "grunt-nodemon": "^0.4.2",
@@ -19,11 +20,12 @@
     "nodemailer": "^5.1.1",
     "npm": "^6.9.0",
     "req-flash": "0.0.3",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "validator": "^10.11.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node main.js",
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Prabhu M <mprabhu@q2m.in>",

@@ -17,7 +17,11 @@ module.exports = {
     },
     getSecurePage: (req, res) => {
         res.send('I am secured');
-    },    
+    },
+    getSignOutPage: (req, res) => {
+        req.session = null;
+        res.redirect('/');        
+    },
     getLoginPage: (req, res) => {
         let message = '';
         let email = req.body.email;
@@ -40,7 +44,7 @@ module.exports = {
                 if (typeof(req.session.adminlogin) == 'undefined') {
                     req.session.adminlogin = [];
                 }
-                req.session.adminlogin.push({id: result[0].id});
+                req.session.adminlogin.push({id: result[0].id, first_name: result[0].first_name, last_name: result[0].last_name, email: result[0].email, image: result[0].image});
 
                 /*firstFileEmitter.emit('FirstEvent', function (data) {
                     console.log('First subscriber: ' + data);

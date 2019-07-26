@@ -8,15 +8,21 @@
     </head>
 
     <body>
-        <h1>My Input Vlidations</h1>
+        <h1>My Input Vlidations</h1>            
         <form action="/valid/add/" method="post">
             <p>
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" autofocus autocomplete="off" />                
+                <% if(errors){ %> 
+                        <%= errors.email.message %> 
+                <% } %>
             </p>
             <p>
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" autofocus />                
+                <% if(errors){ %> 
+                        <%= errors.password.message %> 
+                <% } %>
             </p>
             <p>
                 <input type="submit" />
