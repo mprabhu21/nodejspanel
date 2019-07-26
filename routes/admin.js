@@ -31,7 +31,7 @@ module.exports = {
             "email": req.body.email,
             "name": req.body.password
         }
-
+        
         let usernameQuery = "SELECT * FROM `authors` WHERE email = '" + email + "' AND password = md5('" + password + "') ";
 
         db.query(usernameQuery, (err, result) => {
