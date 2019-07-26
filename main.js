@@ -41,13 +41,12 @@ const port = process.env.PORT || 3000;
 
 app.use(session({secret : 'todotopsecret', cookie: { maxAge: 60000 }}));
 
-const db = mysql.createConnection ({
+/*const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'ionicworld'
 });
-
 
 db.connect((err) => {
     if (err) {
@@ -56,7 +55,7 @@ db.connect((err) => {
     console.log('Connected to database');
 });
 
-global.db = db; 
+global.db = db; */
 
 app.set('port', process.env.port || port); // set express to use this port
 app.set('views', [path.join(__dirname + '/views'), path.join(__dirname + '/views/admin')]); // set express to look in this folder to render our view
