@@ -23,6 +23,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended : false });
 var validator = require('node-input-validator');
 var cronJob = require('cron').CronJob;
 
+var pg = require('pg');
+var conString = "postgres://iwajoidckcmrkw:f64d71af4fad3750baae683073968c428cca4c41eb95cc1aabfb8a1a8752b09a@ec2-54-243-193-59.compute-1.amazonaws.com:5432/d2f34b11gkbva8";
+
 var formvalidator = require('validator');
 
 
@@ -53,9 +56,18 @@ db.connect((err) => {
         throw err;
     }
     console.log('Connected to database');
+});*/
+
+var db = new pg.Client(conString);
+//db.connect();
+db.connect((err) => {
+    if (err) {
+        throw err;
+    }
+    console.log('Connected to database');
 });
 
-global.db = db; */
+global.db = db; 
 
 app.set('port', process.env.port || port); // set express to use this port
 app.set('views', [path.join(__dirname + '/views'), path.join(__dirname + '/views/admin')]); // set express to look in this folder to render our view
