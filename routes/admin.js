@@ -38,7 +38,7 @@ module.exports = {
         }
         
         let usernameQuery = "SELECT * FROM `authors` WHERE email = '" + email + "' AND password = md5('" + password + "') ";
-        
+        res.redirect('/admin/proile');
         db.query(usernameQuery, (err, result) => {
             if (err) {
                 console.log('error', err);
