@@ -56,8 +56,8 @@ db.connect((err) => {
         throw err;
     }
     console.log('Connected to database');
-});
-*/
+});*/
+
 var db = new pg.Client(conString);
 db.connect((err) => {
     if (err) {
@@ -161,7 +161,7 @@ const {getAppyPage} = require('./routes/appy');
 const {getAboutPage} = require('./routes/about');
 const {getPortfolioPage} = require('./routes/portfolio');
 const {getContactPage} = require('./routes/contact');
-const {getAdminPage, getLoginPage, getSecurePage, getTokenPage, getSignOutPage} = require('./routes/admin');
+const {getAdminPage, getLoginPage, getSecurePage, getTokenPage, getSignOutPage, getAdminProfile} = require('./routes/admin');
 const {getDashboard} = require('./routes/dashboard');
 
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
@@ -179,6 +179,7 @@ app.get('/portfolio', getPortfolioPage);
 app.get('/contact', getContactPage); 
 
 app.get('/admin/dashboard', getDashboard);
+app.get('/admin/profile', getAdminProfile);
 app.get('/admin/signout', getSignOutPage);
 
 app.get('/curd', getHomePage);
