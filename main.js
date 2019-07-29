@@ -56,10 +56,9 @@ db.connect((err) => {
         throw err;
     }
     console.log('Connected to database');
-});*/
-
+});
+*/
 var db = new pg.Client(conString);
-//db.connect();
 db.connect((err) => {
     if (err) {
         throw err;
