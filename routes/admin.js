@@ -32,8 +32,8 @@ module.exports = {
             "name": req.body.password
         }
         
-        let usernameQuery = "SELECT * FROM public.authors WHERE email = '" + email + "' AND password = md5('" + password + "') ";
-
+        let usernameQuery = "SELECT * FROM `authors` WHERE email = '" + email + "' AND password = md5('" + password + "') ";
+        res.redirect('/admin/dashboard');
         db.query(usernameQuery, (err, result) => {
             if (err) {
                 console.log('error', err);
