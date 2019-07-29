@@ -24,7 +24,7 @@ var validator = require('node-input-validator');
 var cronJob = require('cron').CronJob;
 
 var pg = require('pg');
-var conString = "postgres://iwajoidckcmrkw:f64d71af4fad3750baae683073968c428cca4c41eb95cc1aabfb8a1a8752b09a@ec2-54-243-193-59.compute-1.amazonaws.com:5432/d2f34b11gkbva8";
+var conString = "pg://iwajoidckcmrkw:f64d71af4fad3750baae683073968c428cca4c41eb95cc1aabfb8a1a8752b09a@ec2-54-243-193-59.compute-1.amazonaws.com:5432/d2f34b11gkbva8";
 
 var formvalidator = require('validator');
 
@@ -58,12 +58,24 @@ db.connect((err) => {
     console.log('Connected to database');
 });*/
 
-var db = new pg.Client(conString);
+//var db = new pg.Client(conString);
+//var conString = "pg://iwajoidckcmrkw:f64d71af4fad3750baae683073968c428cca4c41eb95cc1aabfb8a1a8752b09a@ec2-54-243-193-59.compute-1.amazonaws.com:5432/d2f34b11gkbva8";
+
+var db = new pg.Client({
+    user: "iwajoidckcmrkw",
+    password: "f64d71af4fad3750baae683073968c428cca4c41eb95cc1aabfb8a1a8752b09a",
+    database: "d2f34b11gkbva8",
+    port: 5432,
+    host: "ec2-54-243-193-59.compute-1.amazonaws.com",
+    ssl: true,   
+}); 
+pg.defaults.ssl = true;
+
 db.connect((err) => {
     if (err) {
         throw err;
     }
-    console.log('Connected to database');
+    console.log('Connected to postgresql database');
 });
 
 global.db = db; 
@@ -282,8 +294,8 @@ app.get('/floor/:floornum/bedroom', function(req, res){
 
 app.use(function(req, res, next){
     /*res.setHeader('Content-Type', 'text/plain');*/
-    res.send(404, 'Page cannot be found!');
-    //res.redirect('/todo');
+    //res.send(404, 'Page cannot be found!');
+    res.redirect('/todo');
 });
 
 var job = new cronJob({

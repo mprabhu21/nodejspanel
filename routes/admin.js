@@ -36,14 +36,14 @@ module.exports = {
             "email": req.body.email,
             "name": req.body.password
         }
-        
-        let usernameQuery = "SELECT * FROM `authors` WHERE email = '" + email + "' AND password = md5('" + password + "') ";
-        res.redirect('/admin/proile');
+        let usernameQuery = "SELECT * FROM public.authors WHERE email = '" + email + "' AND password = md5('" + password + "') ";
         db.query(usernameQuery, (err, result) => {
             if (err) {
                 console.log('error', err);
                 return res.status(500).send(err);
             }
+            result = result.rows;
+            console.log('result', result[0].first_name);
             if (result.length > 0) {
                 req.session.adminlogin = [];
                 if (typeof(req.session.adminlogin) == 'undefined') {
@@ -79,14 +79,15 @@ module.exports = {
                 } else {
                     res.status(200).json(response);
                 }                
-            } /*else {
+            } else {
                 console.log('invalid');
-                message = 'Username / Password doesn\'t exists';
+                res.redirect('/admin');
+                /*message = 'Username / Password doesn\'t exists';
                 res.render('admin.ejs', {
                     message,
                     title: 'Appy admin panel'
-                });                
-            }*/
+                });*/
+            }
         });
     },
     getTokenPage: (req, res) => {
