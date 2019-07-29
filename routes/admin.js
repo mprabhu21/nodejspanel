@@ -13,7 +13,7 @@ module.exports = {
     getAdminPage: (req, res) => {        
         res.render('admin/admin.ejs', {
             title: 'Welcome to Appy Admin Panel'
-        });       
+        });
     },
     getSecurePage: (req, res) => {
         res.send('I am secured');
@@ -21,6 +21,11 @@ module.exports = {
     getSignOutPage: (req, res) => {
         req.session = null;
         res.redirect('/');        
+    },
+    getAdminProfile: (req, res) => {
+        res.render('admin/profile.ejs', {
+            title: 'Welcome to Appy Admin Panel'
+        });
     },
     getLoginPage: (req, res) => {
         let message = '';
@@ -33,7 +38,7 @@ module.exports = {
         }
         
         let usernameQuery = "SELECT * FROM `authors` WHERE email = '" + email + "' AND password = md5('" + password + "') ";
-        res.redirect('/admin/dashboard');
+        
         db.query(usernameQuery, (err, result) => {
             if (err) {
                 console.log('error', err);
