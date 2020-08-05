@@ -9,7 +9,7 @@
     "cron": "^1.7.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "express-fileupload": "^1.1.1-alpha.3",
+    "express-fileupload": "^1.1.9",
     "express-validator": "^5.3.1",
     "grunt": "^1.0.3",
     "grunt-contrib-jshint": "^2.0.0",
