@@ -21,7 +21,7 @@
     "npm": "^6.9.0",
     "pg": "^7.12.0",
     "req-flash": "0.0.3",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.5.0",
     "validator": "^10.11.0"
   },
   "devDependencies": {},
